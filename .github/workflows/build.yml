@@ -17,7 +17,7 @@ jobs:
           node-version: 18
 
       - name: Extract
-        run: tar -xf *.tar
+        run: tar -xf zaz-pos-pro.tar
 
       - name: Install
         run: npm install
