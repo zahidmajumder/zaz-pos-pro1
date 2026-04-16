@@ -1,1 +1,27 @@
+name: Build EXE
 
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Extract
+        run: tar -xf *.tar
+
+      - name: Install
+        run: cd zaz-pos-pro && npm install
+
+      - name: Build
+        run: cd zaz-pos-pro && npx electron-builder --win
+
+      - name: Upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: exe-file
+          path: zaz-pos-pro/dist/
