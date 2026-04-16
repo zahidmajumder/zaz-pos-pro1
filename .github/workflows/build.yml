@@ -9,13 +9,15 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
 
       - name: Extract
         run: tar -xf *.tar
-
-      - name: List files
-        run: dir
 
       - name: Install
         run: npm install
