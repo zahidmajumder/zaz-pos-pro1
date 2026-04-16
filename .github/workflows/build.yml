@@ -16,19 +16,24 @@ jobs:
         with:
           node-version: 18
 
-      - name: Extract
+      - name: Extract Project
         run: tar -xf zaz-pos-pro.tar
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: |
           cd zaz-pos-pro
           npm install
-          npm install electron-builder
+
+      - name: Fix package.json
+        run: |
+          cd zaz-pos-pro
+          npm install electron --save-dev
+          npm install electron-builder --save-dev
 
       - name: Build EXE
         run: |
           cd zaz-pos-pro
-          npx electron-builder --win
+          npx electron-builder --win --publish=never
 
       - name: Upload EXE
         uses: actions/upload-artifact@v4
