@@ -14,11 +14,16 @@ jobs:
       - name: Extract
         run: tar -xf *.tar
 
+      - name: List files
+        run: dir
+
       - name: Install
-        run: cd zaz-pos-pro && npm install
+        run: npm install
+        working-directory: zaz-pos-pro
 
       - name: Build
-        run: cd zaz-pos-pro && npx electron-builder --win
+        run: npx electron-builder --win
+        working-directory: zaz-pos-pro
 
       - name: Upload
         uses: actions/upload-artifact@v4
